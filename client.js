@@ -185,7 +185,7 @@ async function main() {
 
 
 
-  // Ex12 - Soma do maior e menor número
+  // Ex12 - Soma do segundo maior e segundo menor número
   var SLUG = nome_exercicio[11];
   var exercicio12 = exercicios[SLUG];
   console.log(exercicio12);
