@@ -207,9 +207,63 @@ async function main() {
   var verificaResposta = await getResponse(token, SLUG, resposta);
   console.log(`O exercício ${exercicio13.titulo} está correto? ${verificaResposta}`);
 
-  // Ex14 - 
+  // Ex14 - Soma de strings de ints
+  var SLUG = nome_exercicio[13];
+  var exercicio14 = exercicios[SLUG];
+  console.log(exercicio14);
+  var resposta = exercicio14.entrada.strings.map(n => parseInt(n)).reduce((a, b) => a + b, 0);
+  var verificaResposta = await getResponse(token, SLUG, resposta);
+  console.log(`O exercício ${exercicio14.titulo} está correto? ${verificaResposta}`);
 
 
+  // Ex15 - Soma com requisições
+  var SLUG = nome_exercicio[14];
+  var exercicio15 = exercicios[SLUG];
+  console.log(exercicio15);
+  var resposta = 0;
+  for(var i = 0; i < exercicio15.entrada.endpoints.length; i++) {
+    var request = {
+      method: 'get',
+      url: exercicio15.entrada.endpoints[i],
+      headers: {
+        username: 'lucam1'
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+    };
+    const response = await axios(request);
+    resposta += response.data;
+  }
+  var verificaResposta = await getResponse(token, SLUG, resposta);
+  console.log(`O exercício ${exercicio15.titulo} está correto? ${verificaResposta}`);
+
+
+  // Ex16 - Caça ao tesouro
+  var SLUG = nome_exercicio[15];
+  var exercicio16 = exercicios[SLUG];
+  console.log(exercicio16);
+  var resposta = exercicio16.entrada.inicio;
+  while(isNaN(resposta)){
+    var request = {
+      method: 'get',
+      url: resposta,
+      headers: {
+        username: 'lucam1'
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+    };
+  const response = await axios(request);
+  resposta = response.data;
+  }
+  var verificaResposta = await getResponse(token, SLUG, resposta);
+  console.log(`O exercício ${exercicio16.titulo} está correto? ${verificaResposta}`);
 
 
 
